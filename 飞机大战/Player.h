@@ -10,8 +10,8 @@
 #define END_WIDTH 180
 #define END_HEIGTH 300
 //游戏失败选项
-#define END_selection_WIDTH 30
-#define END_selection_HEIGHT 100
+#define END_selection_WIDTH 100
+#define END_selection_HEIGHT 30
 struct Player //玩家
 {
 	int x, y;

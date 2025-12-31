@@ -18,6 +18,7 @@ void Load_MainInterface()
 {
 	Load_Music();
 	IMAGE img;
+	cleardevice();
 	loadimage(&img, _T("images/background.png"), WINDOWS_WIDTH, WINDOWS_HEIGTH, true);//±³¾°
 	putimage(0, 0, &img);
 	std::string text = "¿ªÊ¼ÓÎÏ·";

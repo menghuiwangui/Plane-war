@@ -274,7 +274,7 @@ void UpdateGame()//用来实现游戏运动逻辑（移动碰撞重生）
 								}
 								file.close();
 							}
-							Load_MainInterface();
+							end();
 							/*exit(0);*/
 						}
 					}
@@ -302,6 +302,27 @@ void end()
 {
 	DrawGame();
 	IMAGE img[2];
-	loadimage(&img[0], _T("images/again.png"), WINDOWS_WIDTH, WINDOWS_HEIGTH, true);
-	loadimage(&img[1], _T("images/gameover.png"), WINDOWS_WIDTH, WINDOWS_HEIGTH, true);
+	loadimage(&img[0], _T("images/again.png"), END_selection_WIDTH, END_selection_HEIGHT, true);
+	loadimage(&img[1], _T("images/gameover.png"), END_selection_WIDTH, END_selection_HEIGHT, true);
+	drawAlpha(&img[0], (WINDOWS_WIDTH - END_selection_WIDTH) / 2, WINDOWS_HEIGTH / 2 - END_selection_HEIGHT);//具体位置重新计算
+	drawAlpha(&img[1], (WINDOWS_WIDTH - END_selection_WIDTH) / 2, WINDOWS_HEIGTH / 2 +END_selection_HEIGHT);
+	EndBatchDraw();
+	ExMessage msg;
+	while (1)
+	{
+		if (peekmessage(&msg, EX_MOUSE))
+		{
+			if (msg.message == WM_LBUTTONDOWN && msg.x >= (WINDOWS_WIDTH - END_selection_WIDTH) / 2 && msg.x <= (WINDOWS_WIDTH - END_selection_WIDTH) / 2 + END_selection_WIDTH
+				&& msg.y >= WINDOWS_HEIGTH / 2 - END_selection_HEIGHT && msg.y <= WINDOWS_HEIGTH / 2 - END_selection_HEIGHT + END_selection_HEIGHT)
+			{
+				start();//重新开始游戏
+			}
+			if (msg.message == WM_LBUTTONDOWN && msg.x >= (WINDOWS_WIDTH - END_selection_WIDTH) / 2 && msg.x <= (WINDOWS_WIDTH - END_selection_WIDTH) / 2 + END_selection_WIDTH
+				&& msg.y >= WINDOWS_HEIGTH / 2 + END_selection_HEIGHT && msg.y <= WINDOWS_HEIGTH / 2 + 2*END_selection_HEIGHT)
+			{
+				mciSendString("close bgm", NULL, 0, NULL);
+				Load_MainInterface();//游戏结束，回到主界面
+			}
+		}
+	}
 }
