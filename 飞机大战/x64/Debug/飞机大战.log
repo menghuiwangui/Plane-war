@@ -1,3 +1,0 @@
-﻿  The vcpkg manifest was disabled, but we found a manifest file in D:\resourse\vs2022 code\C++游戏自制合集\飞机大战\. You may want to enable vcpkg manifests in your properties page or pass /p:VcpkgEnableManifest=true to the msbuild invocation.
-  Player.cpp
-  飞机大战.vcxproj -> D:\resourse\vs2022 code\C++游戏自制合集\飞机大战\x64\Debug\飞机大战.exe
